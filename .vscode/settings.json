@@ -1,0 +1,171 @@
+{
+  "workbench.editor.enablePreview": true,
+  "editor.tabSize": 2,
+  "editor.wordWrap": "bounded",
+  "editor.wrappingIndent": "same",
+  "editor.wordWrapColumn": 200,
+  "editor.folding": false,
+  "editor.insertSpaces": false,
+  "editor.smoothScrolling": true,
+  "editor.minimap.enabled": true,
+  "editor.detectIndentation": true,
+  "editor.suggestSelection": "first",
+  //определяет, будет ли редактор прокручиваться за пределы последней строки.
+  "editor.scrollBeyondLastLine": true,
+  // "editor.multiCursorModifier": "ctrlCmd",
+  //определяет, будет ли редактор отображать управляющие символы.
+  "editor.renderControlCharacters": false,
+  "editor.unicodeHighlight.ambiguousCharacters": false,
+  "editor.quickSuggestionsDelay": 0,
+
+  "editor.cursorBlinking": "expand",
+  "editor.bracketPairColorization.enabled": true,
+  "editor.glyphMargin": false,
+  "editor.scrollbar.horizontal": "hidden",
+  // "editor.scrollbar.vertical": "hidden",
+  "workbench.colorCustomizations": {
+    "editorOverviewRuler.errorForeground": "#0000",
+    "editorOverviewRuler.warningForeground": "#0000",
+    "editorOverviewRuler.infoForeground": "#0000"
+  },
+  "workbench.colorTheme": "Bearded Theme HC Brewing Storm",
+  "workbench.iconTheme": "material-icon-theme",
+  "workbench.productIconTheme": "Default",
+  "workbench.layoutControl.enabled": false,
+  "workbench.fontSize": 16,
+  "editor.fontSize": 14,
+  "editor.lineHeight": 25,
+  "editor.fontLigatures": true,
+  "editor.fontFamily": "'Dark Mono', IBM Plex Mono",
+  "editor.inlayHints.fontFamily": "Pragmata Pro",
+  "notebook.output.fontFamily": "Pragmata Pro",
+
+  "editor.tokenColorCustomizations": {
+    "textMateRules": [
+      {
+        "scope": [
+          "comment",
+          "entity.name.type.class",
+          "keyword",
+          "constant",
+          "storage.modified",
+          "storage.type.class.js"
+        ],
+        "settings": {
+          "foreground": "#dd4",
+          "fontStyle": "italic"
+        }
+      },
+      {
+        "scope": [
+          "invalid",
+          "keyword.operator",
+          "constant.numeric.css",
+          "keyword.other.unit.px.css",
+          "keyword.numeric.decimal.js",
+          "keyword.numeric.json"
+        ],
+        "settings": {
+          "fontStyle": ""
+        }
+      }
+    ]
+  },
+
+  "terminal.integrated.fontFamily": "Iosevka NFM",
+  "terminal.integrated.fontSize": 14,
+  "terminal.integrated.tabs.enabled": false,
+
+  "explorer.confirmDelete": false,
+  "explorer.compactFolders": false,
+  "explorer.confirmDragAndDrop": false,
+  "explorer.autoReveal": false,
+  "explorer.autoCollapse": true,
+
+  "workbench.editor.tabSizing": true,
+  "workbench.startupEditor": "newUtitledFile",
+
+  "debug.toolBarLocation": "hidden",
+  "debug.focusWindowOnBreak": false,
+  "debug.showBreakpointsInOverviewRules": false,
+
+  // "prettier.semi": false,
+  // "prettier.useTabs": false,
+  // "prettier.singleQuote": false,
+  // "prettier.jsxSingleQuote": true,
+  "prettier.arrowParens": "avoid",
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  // "eslint.packageManager": "yarn",
+  // "files.associations": { "*.scss": "postcss", "*.module.css": "postcss" },
+  // "editor.inlineSugget.enabled": true,
+  "[html]": {
+    "editor.defaultFormatter": "vscode.html-language-features"
+  },
+
+  "javascript.updateImportsOnFileMove.enabled": "always",
+  "javascript.preferences.quoteStyle": "single",
+  // "javascript.format.semicolons": "remove",
+  "javascript.suggest.paths": false,
+
+  "typescript.updateImportsOnFileMove.enabled": "always",
+  "typescript.preferences.quoteStyle": "single",
+  //   "typescript.format.semicolons": "remove",
+  "typescript.suggest.paths": false,
+
+  "cSpell.language": "en,ru",
+  "cSpell.enabled": true,
+  "cSpell.enableFiletypes": ["blade", "jsx", "tsx", "ts", "js", "scss", "sass"],
+
+  "editor.unicodeHighlight.allowedCharacters": {
+    "а": true,
+    "с": true,
+    "Т": true,
+    "б": true,
+    "е": true
+  },
+  "editor.hideCursoreInOverviewRuler": true,
+  "git.enableSmartCommit": true,
+
+  "files.associations": {
+    "*.embeddedhtml": "html",
+    "*.tmpl": "html",
+    "*.lang": "php"
+  },
+
+  "files.exclude": {
+    "**/.expo": true,
+    "**/.expo-shared": true,
+    "**/.idea": true,
+    "**/.vscode": true,
+    "**/.next": true
+  },
+  // "[php]": {
+  //   "editor.defaultFormatter": "kokororin.vscode-phpfmt"
+  // },
+  "workbench.activityBar.visible": true,
+  "editor.formatOnSave": true,
+
+  "eslint.autoFixOnSave": true,
+  "eslint.validate": [
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact"
+  ],
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  },
+  "[javascript]": {
+    "editor.formatOnSave": true
+  },
+  "[typescript]": {
+    "editor.formatOnSave": true
+  },
+  "[php]": {
+    "editor.defaultFormatter": "DEVSENSE.phptools-vscode"
+  },
+  "diffEditor.ignoreTrimWhitespace": false,
+  "cSpell.userWords": ["nextauth"],
+  "redhat.telemetry.enabled": true,
+  "notebook.formatOnSave.enabled": true
+}
