@@ -6,6 +6,10 @@ import { ThrottlerModule } from '@nestjs/throttler';
 import { SequelizeModule } from '@nestjs/sequelize';
 import { Telegraf } from 'telegraf';
 import { message } from 'telegraf/filters';
+import {User} from "./user/domain/entities/user.model";
+import {Points} from "./points/domain/entities/points.model";
+import {PointsModule} from "./points/point.module";
+import {UserModule} from "./user/user.module";
 
 @Module({
   imports: [
@@ -28,11 +32,12 @@ import { message } from 'telegraf/filters';
       username: process.env.POSTGRES_USER,
       password: process.env.POSTGRES_PASSWORD,
       database: process.env.POSTGRES_DB_NAME,
-      models: [],
+      models: [User],
       autoLoadModels: true,
       synchronize: true,
       logging: true,
     }),
+      UserModule,
   ],
   controllers: [AppController],
   providers: [AppService],
