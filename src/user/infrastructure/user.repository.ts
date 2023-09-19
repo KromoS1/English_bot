@@ -1,28 +1,13 @@
-import {Injectable} from "@nestjs/common";
-import {InjectModel} from "@nestjs/sequelize";
-import {User} from "../domain/entities/user.model";
-import {IUpdateUser, IUserModelAttr} from "../domain/dto/user.service.dto";
+import { Injectable } from '@nestjs/common';
+import { User } from '../domain/entities/user.model';
+import { IUserModelAttr } from '../domain/dto/user.service.dto';
+import { InjectModel } from '@nestjs/sequelize';
 
 @Injectable()
-export class UserRepository{
+export class UserRepository {
+  constructor(@InjectModel(User) private usersRepository: typeof User) {}
 
-    constructor(
-        @InjectModel(User) private usersRepository: typeof User,
-    ) { }
-
-    async createUser(userDto: IUserModelAttr) {
-
-        return await this.usersRepository.create(userDto);
-    }
-
-    async updateuser(chat_id: number, userDto: IUpdateUser) {
-
-        const userInstance = await this.usersRepository.findOne({ where: { chat_id } });
-
-        if(!userInstance) return false;
-
-        await userInstance.update(userDto);
-
-        return await userInstance.save();
-    }
+  async createUser(userDto: IUserModelAttr) {
+    return await this.usersRepository.create(userDto);
+  }
 }

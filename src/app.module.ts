@@ -1,15 +1,12 @@
-import { Logger, Module } from '@nestjs/common';
+import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { ThrottlerModule } from '@nestjs/throttler';
 import { SequelizeModule } from '@nestjs/sequelize';
-import { Telegraf } from 'telegraf';
-import { message } from 'telegraf/filters';
-import {User} from "./user/domain/entities/user.model";
-import {Points} from "./points/domain/entities/points.model";
-import {PointsModule} from "./points/point.module";
-import {UserModule} from "./user/user.module";
+import { User } from './user/domain/entities/user.model';
+import { BotModule } from './bot/bot.module';
+import { LoggerModule } from './logger/logger.module';
 
 @Module({
   imports: [
@@ -37,31 +34,11 @@ import {UserModule} from "./user/user.module";
       synchronize: true,
       logging: true,
     }),
-      UserModule,
+    LoggerModule,
+    BotModule,
+    // UserModule,
   ],
   controllers: [AppController],
   providers: [AppService],
 })
-export class AppModule {
-  static start() {
-    const logger = new Logger('BOT');
-    try {
-      const bot = new Telegraf(process.env.BOT_TOKEN);
-
-      bot.start((ctx) => {
-        console.log(ctx.update.message.chat);
-        console.log(ctx.update.message.from);
-
-        ctx.reply('Welcome');
-      });
-      bot.help((ctx) => ctx.reply('Send me a sticker'));
-      bot.on(message('sticker'), (ctx) => ctx.reply('👍'));
-      bot.hears('hi', (ctx) => ctx.reply('Hey there'));
-      bot.launch();
-    } catch (e) {
-      logger.error(e);
-    }
-  }
-}
-
-AppModule.start();
+export class AppModule {}
