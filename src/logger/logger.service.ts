@@ -23,11 +23,11 @@ export class KromLogger extends ConsoleLogger {
     super.warn(message, context);
   }
 
-  error(message: any, stackOrContext?: string): void {
-    const log = `${message}\n${stackOrContext}`;
-    this.filesLoggers.error.writeFile(log);
+  error(message: any, stack?: string, context?: string): void {
+    // const log = `[${context}] --- ${message as string}\n${stack}`;
+    this.filesLoggers.error.writeFile(`${stack}`);
 
-    super.error(message, stackOrContext);
+    super.error(message, stack, context);
   }
 
   writeLog(nameFile: NamesKeyFileType, message: unknown, context?: unknown) {

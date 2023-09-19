@@ -3,6 +3,7 @@ import { ConfigService } from '@nestjs/config';
 import { Telegraf } from 'telegraf';
 import { Command } from '../command.dto';
 import { KromLogger } from 'src/logger/logger.service';
+import { BotException } from 'src/exception';
 
 @Injectable()
 export class BotService {
@@ -23,8 +24,9 @@ export class BotService {
       this.bot = new Telegraf(this.configService.get('BOT_TOKEN'));
       this.addListener();
       this.bot.launch();
+      throw new BotException('Что-то с подключение к боту.');
     } catch (e) {
-      this.logger.error(e);
+      this.logger.error(e.message, e.stack, e.name);
     }
   }
 
@@ -33,11 +35,3 @@ export class BotService {
     this.bot.command(this.comm.help, (ctx) => ctx.reply('What are you need?'));
   }
 }
-
-// class CustomException extends Error {
-//   constructor(message: string) {
-//     super(message);
-//     this.name = 'CustomException';
-//     Error.captureStackTrace(this, CustomException);
-//   }
-// }
