@@ -14,7 +14,6 @@ export class Subject implements ISubject {
   };
 
   registerObserver(type: CommandsType, observer: IObserver) {
-    console.log('register');
     this.listObservers[type].add(observer);
   }
 

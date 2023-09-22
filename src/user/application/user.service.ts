@@ -7,7 +7,7 @@ export class UserService implements IObserver {
   constructor(private subject: Subject) {
     subject.registerObserver('start', this);
   }
-  update(ctx: any) {
-    ctx.reply('Hi, I create  user');
+  update(ctx) {
+    // ctx.reply('');
   }
 }

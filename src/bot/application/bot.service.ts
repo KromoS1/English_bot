@@ -1,15 +1,16 @@
 import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
-import { Telegraf } from 'telegraf';
+import { Context, Telegraf } from 'telegraf';
 import { KromLogger } from 'src/logger/logger.service';
 import { BotException } from 'src/exception';
 import { Subject } from '../observer/subject.service';
 import { Command } from '../entities/dto/command.dto';
 import { CommandsType, IBot } from '../entities/dto/interface-bot';
+import { Update } from 'telegraf/typings/core/types/typegram';
 
 @Injectable()
 export class BotService implements IBot {
-  private _bot;
+  private _bot: Telegraf<Context<Update>>;
 
   constructor(
     private logger: KromLogger,
@@ -31,7 +32,9 @@ export class BotService implements IBot {
         );
       });
       this.createSubject();
-      this._bot.launch();
+      setTimeout(() => {
+        this._bot.launch();
+      }, 2000);
     } catch (e) {
       this.logger.error(e.message, e.stack, e.name);
     }
