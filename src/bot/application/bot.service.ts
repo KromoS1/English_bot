@@ -1,37 +1,47 @@
 import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { Telegraf } from 'telegraf';
-import { Command } from '../command.dto';
 import { KromLogger } from 'src/logger/logger.service';
 import { BotException } from 'src/exception';
+import { Subject } from '../observer/subject.service';
+import { Command } from '../entities/dto/command.dto';
+import { CommandsType, IBot } from '../entities/dto/interface-bot';
 
 @Injectable()
-export class BotService {
-  private bot;
+export class BotService implements IBot {
+  private _bot;
 
   constructor(
     private logger: KromLogger,
     private configService: ConfigService,
     private comm: Command,
+    private subject: Subject,
   ) {}
 
   getBot() {
-    return this.bot;
+    return this._bot;
   }
 
   start() {
     try {
-      this.bot = new Telegraf(this.configService.get('BOT_TOKEN'));
-      this.addListener();
-      this.bot.launch();
-      throw new BotException('Что-то с подключение к боту.');
+      this._bot = new Telegraf(this.configService.get('BOT_TOKEN'));
+      this._bot.catch((err, ctx) => {
+        throw new BotException(
+          `Ooops, encountered an error for ${ctx.updateType} | ${err}`,
+        );
+      });
+      this.createSubject();
+      this._bot.launch();
     } catch (e) {
       this.logger.error(e.message, e.stack, e.name);
     }
   }
 
-  addListener() {
-    this.bot.command(this.comm.start, (ctx) => ctx.reply('Hello'));
-    this.bot.command(this.comm.help, (ctx) => ctx.reply('What are you need?'));
+  createSubject() {
+    for (const c in this.comm) {
+      this._bot.command(c, (ctx) => {
+        this.subject.notifyObserver(c as CommandsType, ctx);
+      });
+    }
   }
 }

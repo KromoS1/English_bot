@@ -1,12 +1,11 @@
 import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { ThrottlerModule } from '@nestjs/throttler';
 import { SequelizeModule } from '@nestjs/sequelize';
 import { User } from './user/domain/entities/user.model';
 import { BotModule } from './bot/bot.module';
 import { LoggerModule } from './logger/logger.module';
+import { UserModule } from './user/user.module';
 
 @Module({
   imports: [
@@ -36,9 +35,7 @@ import { LoggerModule } from './logger/logger.module';
     }),
     LoggerModule,
     BotModule,
-    // UserModule,
+    UserModule,
   ],
-  controllers: [AppController],
-  providers: [AppService],
 })
 export class AppModule {}
