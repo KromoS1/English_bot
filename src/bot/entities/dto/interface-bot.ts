@@ -9,7 +9,11 @@ export interface IBot {
 
 export interface ICommand {
   readonly start: 'start';
-  readonly help: 'help';
+  readonly start_game: 'start_game';
+  readonly get_point_month: 'get_point_month';
+  readonly get_point_all: 'get_point_all';
+  readonly description: 'description';
+  readonly refresh: 'refresh';
 }
 
 export interface ISubject {
@@ -29,7 +33,7 @@ export type IListObservers = {
 };
 
 export type KeyboardType = {
-  main: Array<Array<string>>;
+  main: Array<Array<keyof ICommand>>;
 };
 
 export interface IKeyboard {

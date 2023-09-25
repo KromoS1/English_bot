@@ -11,7 +11,7 @@ import { Subject } from '../observer/subject.service';
 @Injectable()
 export class Keyboard implements IKeyboard, IObserver {
   keyboard: KeyboardType = {
-    main: [['hello'], ['help', 'refresh']],
+    main: [],
   };
 
   constructor(
@@ -19,6 +19,15 @@ export class Keyboard implements IKeyboard, IObserver {
     private subject: Subject,
   ) {
     subject.registerObserver('start', this);
+    this.initKeyBoardData();
+  }
+
+  initKeyBoardData() {
+    this.keyboard.main = [
+      [this.comm.start_game],
+      [this.comm.get_point_month, this.comm.get_point_month],
+      [this.comm.description, this.comm.refresh],
+    ];
   }
 
   update(ctx) {

@@ -10,7 +10,11 @@ import {
 export class Subject implements ISubject {
   private listObservers: IListObservers = {
     start: new Set(),
-    help: new Set(),
+    start_game: new Set(),
+    get_point_all: new Set(),
+    get_point_month: new Set(),
+    description: new Set(),
+    refresh: new Set(),
   };
 
   registerObserver(type: CommandsType, observer: IObserver) {
