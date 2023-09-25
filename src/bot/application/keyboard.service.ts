@@ -7,6 +7,7 @@ import {
 import { Injectable } from '@nestjs/common';
 import { Command } from '../entities/dto/command.dto';
 import { Subject } from '../observer/subject.service';
+import { updateNameCommand } from 'src/helper/lib';
 
 @Injectable()
 export class Keyboard implements IKeyboard, IObserver {
@@ -24,16 +25,22 @@ export class Keyboard implements IKeyboard, IObserver {
 
   initKeyBoardData() {
     this.keyboard.main = [
-      [this.comm.start_game],
-      [this.comm.get_point_month, this.comm.get_point_month],
-      [this.comm.description, this.comm.refresh],
+      [updateNameCommand(this.comm.start_game)],
+      [
+        updateNameCommand(this.comm.get_point_month),
+        updateNameCommand(this.comm.get_point_month),
+      ],
+      [
+        updateNameCommand(this.comm.description),
+        updateNameCommand(this.comm.refresh),
+      ],
     ];
   }
 
   update(ctx) {
     switch (ctx.command) {
       case this.comm.start: {
-        ctx.reply('Selected action', this.createKeyboard('main'));
+        ctx.reply(`Hi, I'm English Bot!`, this.createKeyboard('main'));
       }
     }
   }

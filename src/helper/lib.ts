@@ -23,3 +23,17 @@ export const logOutMsg = (ctx, text) => {
     text,
   );
 };
+
+export const updateNameCommand = (command: string): string => {
+  return command
+    .split('_')
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(' ');
+};
+
+export const resetNameCommand = (command: string): string => {
+  return command
+    .split(' ')
+    .map((word) => word.charAt(0).toLowerCase() + word.slice(1))
+    .join('_');
+};

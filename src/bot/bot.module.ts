@@ -9,6 +9,6 @@ import { Keyboard } from './application/keyboard.service';
 @Module({
   providers: [BotService, ConfigService, Command, Subject, Keyboard],
   imports: [LoggerModule],
-  exports: [BotService, Subject],
+  exports: [BotService, Subject, Command],
 })
 export class BotModule {}

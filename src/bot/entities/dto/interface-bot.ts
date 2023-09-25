@@ -33,7 +33,7 @@ export type IListObservers = {
 };
 
 export type KeyboardType = {
-  main: Array<Array<keyof ICommand>>;
+  main: Array<Array<string>>;
 };
 
 export interface IKeyboard {
