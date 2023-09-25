@@ -25,7 +25,10 @@ export class Keyboard implements IKeyboard, IObserver {
 
   initKeyBoardData() {
     this.keyboard.main = [
-      [updateNameCommand(this.comm.start_game)],
+      [
+        updateNameCommand(this.comm.start_game),
+        updateNameCommand(this.comm.add_words),
+      ],
       [
         updateNameCommand(this.comm.get_point_month),
         updateNameCommand(this.comm.get_point_month),
