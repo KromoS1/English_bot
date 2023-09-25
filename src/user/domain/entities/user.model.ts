@@ -1,4 +1,4 @@
-import { IUserModelAttr } from '../dto/user.service.dto';
+import { IUserModelAttr } from '../dto/user.dto';
 import { Column, DataType, Model, Table } from 'sequelize-typescript';
 
 @Table({ tableName: 'user', updatedAt: false })
