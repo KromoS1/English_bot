@@ -39,6 +39,5 @@ export class UserService implements IObserver {
         break;
       }
     }
-    // ctx.reply('');
   }
 }

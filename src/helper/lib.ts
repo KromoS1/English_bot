@@ -11,7 +11,7 @@ export const userString = (ctx) => {
 
 export const logMsg = (ctx) => {
   const from = userString(ctx);
-  console.log('<', ctx.message.text, from);
+  return `${ctx.message.text} ${from}`;
 };
 
 export const logOutMsg = (ctx, text) => {

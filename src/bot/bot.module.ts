@@ -8,7 +8,7 @@ import { Keyboard } from './application/keyboard.service';
 
 @Module({
   providers: [BotService, ConfigService, Command, Subject, Keyboard],
-  imports: [LoggerModule],
+  imports: [LoggerModule, LoggerModule],
   exports: [BotService, Subject, Command],
 })
 export class BotModule {}

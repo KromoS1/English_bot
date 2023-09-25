@@ -10,6 +10,7 @@ export class KromLogger extends ConsoleLogger {
       log: new LoggerFile(LoggerFile.nameFiles.log),
       warn: new LoggerFile(LoggerFile.nameFiles.warn),
       error: new LoggerFile(LoggerFile.nameFiles.error),
+      message: new LoggerFile(LoggerFile.nameFiles.message),
     };
   }
 

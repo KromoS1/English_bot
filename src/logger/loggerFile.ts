@@ -6,6 +6,7 @@ type NamesFileType = {
   log: 'log';
   warn: 'warn';
   error: 'error';
+  message: 'message';
 };
 
 export type NamesKeyFileType = NamesFileType[keyof NamesFileType];
@@ -16,6 +17,7 @@ export class LoggerFile {
     log: 'log',
     warn: 'warn',
     error: 'error',
+    message: 'message',
   };
 
   private formatTime = 'DD-MM-YYYY HH:mm:SS';
