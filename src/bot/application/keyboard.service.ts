@@ -30,8 +30,8 @@ export class Keyboard implements IKeyboard, IObserver {
         updateNameCommand(this.comm.add_words),
       ],
       [
-        updateNameCommand(this.comm.get_point_month),
-        updateNameCommand(this.comm.get_point_month),
+        updateNameCommand(this.comm.get_points_month),
+        updateNameCommand(this.comm.get_points_all),
       ],
       [
         updateNameCommand(this.comm.description),

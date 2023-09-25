@@ -11,8 +11,8 @@ export interface ICommand {
   readonly start: 'start';
   readonly start_game: 'start_game';
   readonly add_words: 'add_words';
-  readonly get_point_month: 'get_point_month';
-  readonly get_point_all: 'get_point_all';
+  readonly get_points_month: 'get_points_month';
+  readonly get_points_all: 'get_points_all';
   readonly description: 'description';
   readonly refresh: 'refresh';
 }

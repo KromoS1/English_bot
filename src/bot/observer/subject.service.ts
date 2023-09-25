@@ -11,8 +11,9 @@ export class Subject implements ISubject {
   private listObservers: IListObservers = {
     start: new Set(),
     start_game: new Set(),
-    get_point_all: new Set(),
-    get_point_month: new Set(),
+    add_words: new Set(),
+    get_points_all: new Set(),
+    get_points_month: new Set(),
     description: new Set(),
     refresh: new Set(),
   };
