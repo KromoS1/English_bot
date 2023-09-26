@@ -1,3 +1,5 @@
+import { CommandsType } from 'src/bot/entities/dto/interface-bot';
+
 export const userString = (ctx) => {
   return JSON.stringify(
     ctx.from.id == ctx.chat.id
@@ -31,9 +33,9 @@ export const updateNameCommand = (command: string): string => {
     .join(' ');
 };
 
-export const resetNameCommand = (command: string): string => {
+export const resetNameCommand = (command: string) => {
   return command
     .split(' ')
     .map((word) => word.charAt(0).toLowerCase() + word.slice(1))
-    .join('_');
+    .join('_') as CommandsType;
 };

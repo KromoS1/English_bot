@@ -1,14 +1,14 @@
 import { Injectable } from '@nestjs/common';
 import { Command } from 'src/bot/entities/dto/command.dto';
 import { IObserver } from 'src/bot/entities/dto/interface-bot';
-import { Subject } from 'src/bot/observer/subject.service';
 import { UserQueryRepository } from '../infrastructure/user.query.repository';
 import { UserRepository } from '../infrastructure/user.repository';
+import { CommandSubject } from 'src/bot/observer/command.subject';
 
 @Injectable()
 export class UserService implements IObserver {
   constructor(
-    private subject: Subject,
+    private subject: CommandSubject,
     private comm: Command,
     private userQueryRepo: UserQueryRepository,
     private userRepo: UserRepository,
@@ -16,7 +16,7 @@ export class UserService implements IObserver {
     subject.registerObserver('start', this);
   }
 
-  async update(ctx) {
+  async acceptMessage(ctx) {
     switch (ctx.command) {
       case this.comm.start: {
         const user = await this.userQueryRepo.getUserByChatId(ctx.chat.id);

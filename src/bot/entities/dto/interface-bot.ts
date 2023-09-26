@@ -1,5 +1,6 @@
 import { Context, Telegraf } from 'telegraf';
 import { Update } from 'telegraf/typings/core/types/typegram';
+import { Hears } from './hears.dto';
 
 export interface IBot {
   bot?: Telegraf<Context<Update>>;
@@ -9,32 +10,36 @@ export interface IBot {
 
 export interface ICommand {
   readonly start: 'start';
-  readonly start_game: 'start_game';
-  readonly add_words: 'add_words';
-  readonly get_points_month: 'get_points_month';
-  readonly get_points_all: 'get_points_all';
-  readonly description: 'description';
-  readonly refresh: 'refresh';
 }
 
-export interface ISubject {
-  registerObserver: (type: CommandsType, observer: IObserver) => void;
-  removeObserver: (type: CommandsType, observer: IObserver) => void;
-  notifyObserver: (type: CommandsType, ctx: Context<Update>) => void;
+export interface IHears {
+  readonly start_game: 'Start game';
+  readonly add_words: 'Add Words';
+  readonly get_points_month: 'Get points month';
+  readonly get_points_all: 'Get Points all';
+  readonly description: 'Description';
+  readonly refresh: 'Refresh';
+}
+
+export interface ISubject<T> {
+  registerObserver: (type: T, observer: IObserver) => void;
+  removeObserver: (type: T, observer: IObserver) => void;
+  notifyObserver: (type: T, ctx: Context<Update>) => void;
 }
 
 export type CommandsType = keyof ICommand;
+export type HearsType = keyof IHears;
 
 export interface IObserver {
-  update: (ctx: Context<Update>) => void;
+  acceptMessage: (ctx: Context<Update>) => void;
 }
 
-export type IListObservers = {
-  [K in keyof ICommand]: Set<IObserver>;
+export type IListObservers<T extends string> = {
+  [K in T]: Set<IObserver>;
 };
 
 export type KeyboardType = {
-  main: Array<Array<string>>;
+  main: Array<Array<Hears[keyof Hears]>>; // Получение уникальных строк из значений полей класса
 };
 
 export interface IKeyboard {

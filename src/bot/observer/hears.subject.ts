@@ -4,12 +4,12 @@ import {
   ISubject,
   IListObservers,
   CommandsType,
+  HearsType,
 } from '../entities/dto/interface-bot';
 
 @Injectable()
-export class Subject implements ISubject {
-  private listObservers: IListObservers = {
-    start: new Set(),
+export class HearsSubject implements ISubject<HearsType> {
+  listObservers: IListObservers<HearsType> = {
     start_game: new Set(),
     add_words: new Set(),
     get_points_all: new Set(),
@@ -18,19 +18,23 @@ export class Subject implements ISubject {
     refresh: new Set(),
   };
 
-  registerObserver(type: CommandsType, observer: IObserver) {
+  getListListener(type: HearsType) {
+    return this.listObservers[type];
+  }
+
+  registerObserver(type: HearsType, observer: IObserver) {
     this.listObservers[type].add(observer);
   }
 
-  removeObserver(type: CommandsType, observer: IObserver) {
+  removeObserver(type: HearsType, observer: IObserver) {
     if (this.listObservers[type].has(observer)) {
       this.listObservers[type].delete(observer);
     }
   }
 
-  notifyObserver(type: CommandsType, ctx: any) {
+  notifyObserver(type: HearsType, ctx: any) {
     this.listObservers[type].forEach((o) => {
-      o.update(ctx);
+      o.acceptMessage(ctx);
     });
   }
 }

@@ -6,8 +6,8 @@ import {
 } from '../entities/dto/interface-bot';
 import { Injectable } from '@nestjs/common';
 import { Command } from '../entities/dto/command.dto';
-import { Subject } from '../observer/subject.service';
-import { updateNameCommand } from 'src/helper/lib';
+import { Hears } from '../entities/dto/hears.dto';
+import { CommandSubject } from '../observer/command.subject';
 
 @Injectable()
 export class Keyboard implements IKeyboard, IObserver {
@@ -16,34 +16,27 @@ export class Keyboard implements IKeyboard, IObserver {
   };
 
   constructor(
+    private hears: Hears,
     private comm: Command,
-    private subject: Subject,
+    private subject: CommandSubject,
   ) {
-    subject.registerObserver('start', this);
+    this.subject.registerObserver('start', this);
     this.initKeyBoardData();
   }
 
   initKeyBoardData() {
     this.keyboard.main = [
-      [
-        updateNameCommand(this.comm.start_game),
-        updateNameCommand(this.comm.add_words),
-      ],
-      [
-        updateNameCommand(this.comm.get_points_month),
-        updateNameCommand(this.comm.get_points_all),
-      ],
-      [
-        updateNameCommand(this.comm.description),
-        updateNameCommand(this.comm.refresh),
-      ],
+      [this.hears.start_game, this.hears.add_words],
+      [this.hears.get_points_month, this.hears.get_points_all],
+      [this.hears.description, this.hears.refresh],
     ];
   }
 
-  update(ctx) {
+  acceptMessage(ctx) {
     switch (ctx.command) {
       case this.comm.start: {
         ctx.reply(`Hi, I'm English Bot!`, this.createKeyboard('main'));
+        break;
       }
     }
   }
