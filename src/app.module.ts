@@ -8,6 +8,8 @@ import { LoggerModule } from './logger/logger.module';
 import { UserModule } from './user/user.module';
 import { Words } from './words/domain/entities/words.model';
 import { WordsModule } from './words/words.module';
+import { Points } from './points/domain/entities/points.model';
+import { PointsModule } from './points/point.module';
 
 @Module({
   imports: [
@@ -30,7 +32,7 @@ import { WordsModule } from './words/words.module';
       username: process.env.POSTGRES_USER,
       password: process.env.POSTGRES_PASSWORD,
       database: process.env.POSTGRES_DB_NAME,
-      models: [User, Words],
+      models: [User, Words, Points],
       autoLoadModels: true,
       synchronize: true,
       logging: true,
@@ -39,6 +41,7 @@ import { WordsModule } from './words/words.module';
     BotModule,
     UserModule,
     WordsModule,
+    PointsModule,
   ],
 })
 export class AppModule {}

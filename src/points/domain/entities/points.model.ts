@@ -1,4 +1,6 @@
 import {
+  BelongsTo,
+  BelongsToMany,
   Column,
   DataType,
   ForeignKey,
@@ -29,6 +31,6 @@ export class Points extends Model<Points, IPointModelAttr> {
   @Column({ type: DataType.DATEONLY, allowNull: false })
   date: Date;
 
-  @HasMany(() => User)
+  @BelongsTo(() => User, 'user_id')
   user: User;
 }
