@@ -5,6 +5,7 @@ import { resetNameCommand } from 'src/helper/lib';
 import { WordsRepository } from '../infrastructure/words.repository';
 import { Hears } from 'src/bot/entities/dto/hears.dto';
 import { HearsSubject } from 'src/bot/observer/hears.subject';
+import { BotService } from 'src/bot/application/bot.service';
 
 @Injectable()
 export class WordsService implements IObserver {
@@ -21,6 +22,8 @@ export class WordsService implements IObserver {
   }
 
   acceptMessage(ctx) {
-    ctx.reply('Click add words');
+    const text = `Введите ваше фразу в таком формате: #words Hello:Привет`;
+
+    ctx.replyWithHTML(text);
   }
 }

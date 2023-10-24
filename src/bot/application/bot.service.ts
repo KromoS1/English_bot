@@ -40,17 +40,13 @@ export class BotService implements IBot {
       this._bot.use(async (ctx, next) => {
         await next();
 
+        console.log(ctx);
+
         this.kromLogger.writeLog('message', logMsg(ctx), 'BOT');
       });
 
-      this._bot.on('message', (ctx) => {
-        const chat_id = ctx.chat.id;
-        const message_id = ctx.message.message_id;
-
-        this._bot.telegram.forwardMessage(chat_id, chat_id, message_id);
-      });
-
       this.createSubject();
+
       this._bot.launch();
     } catch (e) {
       this.logger.error(e.message, e.stack, e.name);
